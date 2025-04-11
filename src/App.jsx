@@ -6,10 +6,11 @@ import Modal from './components/Modal';
 import AddRestaurantModal from './components/AddRestaurantModal';
 import RestaurantDetailModal from './components/RestaurantDetailModal';
 import { useEffect, useState } from 'react';
+import { FOOD_CATEGORY } from './constants';
 
 function App() {
     const [restaurants, setRestaurants] = useState([]);
-    const [category, setCategory] = useState('전체');
+    const [category, setCategory] = useState(Object.keys(FOOD_CATEGORY).find((key) => FOOD_CATEGORY[key] === 'ALL'));
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     const [modalKind, setModalKind] = useState('');

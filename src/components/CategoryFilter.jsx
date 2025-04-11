@@ -1,8 +1,9 @@
 import '../css/CategoryFilter.css';
+import { FOOD_CATEGORY } from '../constants';
+
+const categoryData = Object.keys(FOOD_CATEGORY);
 
 function CategoryFilter({ category, onChangeCategory }) {
-    const categoryData = ['전체', '한식', '중식', '일식', '양식', '아시안', '기타'];
-
     return (
         <>
             <section className='restaurant-filter-container'>
@@ -14,9 +15,9 @@ function CategoryFilter({ category, onChangeCategory }) {
                     value={category}
                     onChange={(e) => onChangeCategory(e.target.value)}
                 >
-                    {categoryData.map((category) => (
-                        <option key={category} value={category}>
-                            {category}
+                    {categoryData.map((currentCategory) => (
+                        <option key={currentCategory} value={currentCategory}>
+                            {currentCategory}
                         </option>
                     ))}
                 </select>

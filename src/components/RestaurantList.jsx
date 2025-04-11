@@ -1,5 +1,5 @@
 import '../css/RestaurantList.css';
-import { convertCategoryData } from '../data/convertCategoryData.js';
+import { FOOD_CATEGORY } from '../constants.js';
 
 function RestaurantList({ restaurants, onChangeModal, onChangeSelectRestaurant, onChangeModalKind }) {
     return (
@@ -17,7 +17,7 @@ function RestaurantList({ restaurants, onChangeModal, onChangeSelectRestaurant, 
                             }}
                         >
                             <div className='restaurant__category'>
-                                <img src={`./category-${convertCategoryData[restaurant.category]}.png`} alt={restaurant.category} className='category-icon' />
+                                <img src={`./category-${FOOD_CATEGORY[restaurant.category]}.png`} alt={restaurant.category} className='category-icon' />
                             </div>
                             <div className='restaurant__info'>
                                 <h3 className='restaurant__name text-subtitle'>{restaurant.name}</h3>

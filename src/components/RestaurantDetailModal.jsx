@@ -1,6 +1,6 @@
 import '../css/Modal.css';
 
-function RestaurantDetailModal({ onChangeModal, selectedRestaurant }) {
+function RestaurantDetailModal({ closeRestaurantModal, selectedRestaurant }) {
     const { name, description } = selectedRestaurant;
     return (
         <>
@@ -9,7 +9,7 @@ function RestaurantDetailModal({ onChangeModal, selectedRestaurant }) {
                 <p className='restaurant-info__description text-body'>{description}</p>
             </div>
             <div className='button-container'>
-                <button className='button button--primary text-caption' onClick={() => onChangeModal(false)}>
+                <button className='button button--primary text-caption' onClick={() => closeRestaurantModal()}>
                     닫기
                 </button>
             </div>

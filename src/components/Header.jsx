@@ -1,6 +1,6 @@
 import '../css/Header.css';
 
-function Header({ onChangeModal, onChangeModalKind }) {
+function Header({ openRestaurantAddModal }) {
     return (
         <>
             <header className='gnb'>
@@ -10,8 +10,7 @@ function Header({ onChangeModal, onChangeModalKind }) {
                     className='gnb__button'
                     aria-label='음식점 추가'
                     onClick={() => {
-                        onChangeModalKind('addForm');
-                        onChangeModal(true);
+                        openRestaurantAddModal();
                     }}
                 >
                     <img src='./add-button.png' alt='음식점 추가' />

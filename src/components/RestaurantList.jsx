@@ -1,21 +1,13 @@
 import '../css/RestaurantList.css';
 import { FOOD_CATEGORY } from '../constants.js';
 
-function RestaurantList({ restaurants, onChangeModal, onChangeSelectRestaurant, onChangeModalKind }) {
+function RestaurantList({ restaurants, openRestaurantDetailModal }) {
     return (
         <>
             <section className='restaurant-list-container'>
                 <ul className='restaurant-list'>
                     {restaurants.map((restaurant) => (
-                        <li
-                            key={restaurant.id}
-                            className='restaurant'
-                            onClick={() => {
-                                onChangeSelectRestaurant(restaurant);
-                                onChangeModalKind('detail');
-                                onChangeModal(true);
-                            }}
-                        >
+                        <li key={restaurant.id} className='restaurant' onClick={() => openRestaurantDetailModal(restaurant)}>
                             <div className='restaurant__category'>
                                 <img src={`./category-${FOOD_CATEGORY[restaurant.category]}.png`} alt={restaurant.category} className='category-icon' />
                             </div>

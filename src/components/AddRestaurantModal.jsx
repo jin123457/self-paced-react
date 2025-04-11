@@ -1,7 +1,7 @@
 import '../css/Modal.css';
 import { useState } from 'react';
 
-function AddRestaurantModal({ onChangeModal, handleRestaurant }) {
+function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
     const [category, setCategory] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -34,7 +34,7 @@ function AddRestaurantModal({ onChangeModal, handleRestaurant }) {
             }
         };
         addRestaurant();
-        onChangeModal(false);
+        closeRestaurantModal();
     };
     return (
         <>

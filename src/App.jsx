@@ -45,25 +45,39 @@ function App() {
         fetchRestaurants();
     }, [category]);
 
+    const openRestaurantDetailModal = (restaurant) => {
+        setSelectedRestaurant(restaurant);
+        setIsModalOpen(true);
+        setModalKind('detail');
+    };
+
+    const openRestaurantAddModal = () => {
+        setIsModalOpen(true);
+        setModalKind('addForm');
+    };
+
+    const closeRestaurantModal = () => {
+        setIsModalOpen(false);
+        setModalKind('');
+    };
     return (
         <>
-            <Header onChangeModal={setIsModalOpen} onChangeModalKind={setModalKind} />
+            <Header openRestaurantAddModal={openRestaurantAddModal} />
             <main>
                 <CategoryFilter category={category} onChangeCategory={setCategory} />
-                <RestaurantList
-                    restaurants={restaurants}
-                    onChangeModal={setIsModalOpen}
-                    onChangeSelectRestaurant={setSelectedRestaurant}
-                    onChangeModalKind={setModalKind}
-                />
+                <RestaurantList restaurants={restaurants} openRestaurantDetailModal={openRestaurantDetailModal} />
             </main>
             <aside>
                 {isModalOpen && (
                     <Modal onChangeModal={setIsModalOpen}>
                         {modalKind === 'addForm' ? (
-                            <AddRestaurantModal onChangeModal={setIsModalOpen} currentRestaurants={restaurants} handleRestaurant={setRestaurants} />
+                            <AddRestaurantModal
+                                closeRestaurantModal={closeRestaurantModal}
+                                currentRestaurants={restaurants}
+                                handleRestaurant={setRestaurants}
+                            />
                         ) : (
-                            <RestaurantDetailModal onChangeModal={setIsModalOpen} selectedRestaurant={selectedRestaurant} />
+                            <RestaurantDetailModal closeRestaurantModal={closeRestaurantModal} selectedRestaurant={selectedRestaurant} />
                         )}
                     </Modal>
                 )}

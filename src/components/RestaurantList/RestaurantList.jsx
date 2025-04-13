@@ -1,7 +1,7 @@
 import './RestaurantList.css';
 import { FOOD_CATEGORY } from '../../constants.js';
 
-function RestaurantList({ restaurants, openRestaurantDetailModal }) {
+function RestaurantList({ restaurants, onOpenDetailModal }) {
     return (
         <>
             <section className='restaurant-list-container'>
@@ -10,7 +10,7 @@ function RestaurantList({ restaurants, openRestaurantDetailModal }) {
                         const { id, category, name, description } = restaurant;
 
                         return (
-                            <li key={id} className='restaurant' onClick={() => openRestaurantDetailModal(restaurant)}>
+                            <li key={id} className='restaurant' onClick={() => onOpenDetailModal(restaurant)}>
                                 <div className='restaurant__category'>
                                     <img src={`./category-${FOOD_CATEGORY[category]}.png`} alt={category} className='category-icon' />
                                 </div>

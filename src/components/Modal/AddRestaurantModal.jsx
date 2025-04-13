@@ -1,6 +1,6 @@
 import './Layout/Modal.css';
 
-function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
+function AddRestaurantModal({ onCloseModal, onUpdateRestaurants }) {
     const handleFomSubmit = (e) => {
         e.preventDefault();
 
@@ -25,13 +25,13 @@ function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
 
                 const response = await fetch('http://localhost:3000/restaurants');
                 const updatedRestaurants = await response.json();
-                handleRestaurant(updatedRestaurants);
+                onUpdateRestaurants(updatedRestaurants);
             } catch (error) {
                 console.error('레스토랑 추가 중 오류 발생:', error.message);
             }
         };
         addRestaurant();
-        closeRestaurantModal();
+        onCloseModal();
     };
     return (
         <>

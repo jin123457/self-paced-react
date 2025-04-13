@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
 
-function Modal({ onChangeModal, children }) {
+function Modal({ onCloseModal, children }) {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                onChangeModal({
-                    type: '',
-                    isOpen: false,
-                });
+                onCloseModal();
             }
         };
 
@@ -20,7 +17,7 @@ function Modal({ onChangeModal, children }) {
     return (
         <>
             <div className='modal modal--open'>
-                <div className='modal-backdrop' onClick={() => onChangeModal()}></div>
+                <div className='modal-backdrop' onClick={() => onCloseModal()}></div>
                 <div className='modal-container'>{children}</div>
             </div>
         </>

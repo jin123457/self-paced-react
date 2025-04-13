@@ -1,6 +1,6 @@
 import './Layout/Modal.css';
 
-function RestaurantDetailModal({ closeRestaurantModal, selectedRestaurant }) {
+function RestaurantDetailModal({ onCloseModal, selectedRestaurant }) {
     const { name, description } = selectedRestaurant;
     return (
         <>
@@ -9,7 +9,7 @@ function RestaurantDetailModal({ closeRestaurantModal, selectedRestaurant }) {
                 <p className='restaurant-info__description text-body'>{description}</p>
             </div>
             <div className='button-container'>
-                <button className='button button--primary text-caption' onClick={() => closeRestaurantModal()}>
+                <button className='button button--primary text-caption' onClick={() => onCloseModal()}>
                     닫기
                 </button>
             </div>

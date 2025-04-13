@@ -1,6 +1,6 @@
 import './Header.css';
 
-function Header({ openRestaurantAddModal }) {
+function Header({ onOpenAddModal }) {
     return (
         <>
             <header className='gnb'>
@@ -10,7 +10,7 @@ function Header({ openRestaurantAddModal }) {
                     className='gnb__button'
                     aria-label='음식점 추가'
                     onClick={() => {
-                        openRestaurantAddModal();
+                        onOpenAddModal();
                     }}
                 >
                     <img src='./add-button.png' alt='음식점 추가' />

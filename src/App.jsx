@@ -35,7 +35,7 @@ function App() {
         fetchRestaurants();
     }, [category]);
 
-    const openRestaurantDetailModal = (restaurant) => {
+    const onOpenDetailModal = (restaurant) => {
         setSelectedRestaurant(restaurant);
         setModalState({
             type: MODAL_TYPE.DETAIL,
@@ -43,14 +43,14 @@ function App() {
         });
     };
 
-    const openRestaurantAddModal = () => {
+    const onOpenAddModal = () => {
         setModalState({
             type: MODAL_TYPE.ADD,
             isOpen: true,
         });
     };
 
-    const closeRestaurantModal = () => {
+    const onCloseModal = () => {
         setModalState({
             type: '',
             isOpen: false,
@@ -58,18 +58,18 @@ function App() {
     };
 
     const modalComponents = {
-        [MODAL_TYPE.ADD]: <AddRestaurantModal closeRestaurantModal={closeRestaurantModal} currentRestaurants={restaurants} handleRestaurant={setRestaurants} />,
-        [MODAL_TYPE.DETAIL]: <RestaurantDetailModal closeRestaurantModal={closeRestaurantModal} selectedRestaurant={selectedRestaurant} />,
+        [MODAL_TYPE.ADD]: <AddRestaurantModal onCloseModal={onCloseModal} currentRestaurants={restaurants} onUpdateRestaurants={setRestaurants} />,
+        [MODAL_TYPE.DETAIL]: <RestaurantDetailModal onCloseModal={onCloseModal} selectedRestaurant={selectedRestaurant} />,
     };
 
     return (
         <>
-            <Header openRestaurantAddModal={openRestaurantAddModal} />
+            <Header onOpenAddModal={onOpenAddModal} />
             <main>
                 <CategoryFilter category={category} onChangeCategory={setCategory} />
-                <RestaurantList restaurants={restaurants} openRestaurantDetailModal={openRestaurantDetailModal} />
+                <RestaurantList restaurants={restaurants} onOpenDetailModal={onOpenDetailModal} />
             </main>
-            <aside>{modalState.isOpen && <Modal onChangeModal={closeRestaurantModal}>{modalComponents[modalState.type]}</Modal>}</aside>
+            <aside>{modalState.isOpen && <Modal onCloseModal={onCloseModal}>{modalComponents[modalState.type]}</Modal>}</aside>
         </>
     );
 }

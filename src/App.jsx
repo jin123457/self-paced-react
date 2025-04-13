@@ -13,9 +13,11 @@ function App() {
     const [category, setCategory] = useState(() => {
         return Object.keys(FOOD_CATEGORY).find((key) => FOOD_CATEGORY[key] === 'ALL');
     });
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalState, setModalState] = useState({
+        type: '',
+        isOpen: false,
+    });
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-    const [modalKind, setModalKind] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:3000/restaurants')
@@ -49,18 +51,24 @@ function App() {
 
     const openRestaurantDetailModal = (restaurant) => {
         setSelectedRestaurant(restaurant);
-        setIsModalOpen(true);
-        setModalKind('detail');
+        setModalState({
+            type: 'detail',
+            isOpen: true,
+        });
     };
 
     const openRestaurantAddModal = () => {
-        setIsModalOpen(true);
-        setModalKind('addForm');
+        setModalState({
+            type: 'addForm',
+            isOpen: true,
+        });
     };
 
     const closeRestaurantModal = () => {
-        setIsModalOpen(false);
-        setModalKind('');
+        setModalState({
+            type: '',
+            isOpen: false,
+        });
     };
     return (
         <>
@@ -70,9 +78,9 @@ function App() {
                 <RestaurantList restaurants={restaurants} openRestaurantDetailModal={openRestaurantDetailModal} />
             </main>
             <aside>
-                {isModalOpen && (
-                    <Modal onChangeModal={setIsModalOpen}>
-                        {modalKind === 'addForm' ? (
+                {modalState.isOpen && (
+                    <Modal onChangeModal={closeRestaurantModal}>
+                        {modalState.type === 'addForm' ? (
                             <AddRestaurantModal
                                 closeRestaurantModal={closeRestaurantModal}
                                 currentRestaurants={restaurants}

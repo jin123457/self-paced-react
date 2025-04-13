@@ -4,7 +4,10 @@ function Modal({ onChangeModal, children }) {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                onChangeModal(false);
+                onChangeModal({
+                    type: '',
+                    isOpen: false,
+                });
             }
         };
 

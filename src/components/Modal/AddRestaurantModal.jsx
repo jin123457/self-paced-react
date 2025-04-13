@@ -1,21 +1,18 @@
 import './Layout/Modal.css';
-import { useState } from 'react';
 
 function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
-    const [category, setCategory] = useState('');
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-
     const handleFomSubmit = (e) => {
         e.preventDefault();
 
         const addRestaurant = async () => {
             try {
+                const form = document.getElementById('restaurantForm');
+
                 const newRestaurant = {
                     id: Date.now(),
-                    category,
-                    name,
-                    description,
+                    category: form.category.value,
+                    name: form.name.value,
+                    description: form.description.value,
                 };
 
                 await fetch('http://localhost:3000/restaurants', {
@@ -39,10 +36,10 @@ function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
     return (
         <>
             <h2 className='modal-title text-title'>새로운 음식점</h2>
-            <form>
+            <form name='restaurant-form' id='restaurantForm' onSubmit={handleFomSubmit}>
                 <div className='form-item form-item--required'>
                     <label htmlFor='category text-caption'>카테고리</label>
-                    <select name='category' id='category' required onChange={(e) => setCategory(e.target.value)}>
+                    <select name='category' id='category' required>
                         <option value=''>선택해 주세요</option>
                         <option value='한식'>한식</option>
                         <option value='중식'>중식</option>
@@ -55,17 +52,17 @@ function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {
 
                 <div className='form-item form-item--required'>
                     <label htmlFor='name text-caption'>이름</label>
-                    <input type='text' name='name' id='name' required onChange={(e) => setName(e.target.value)} />
+                    <input type='text' name='name' id='name' required />
                 </div>
 
                 <div className='form-item'>
                     <label htmlFor='description text-caption'>설명</label>
-                    <textarea name='description' id='description' cols='30' rows='5' onChange={(e) => setDescription(e.target.value)}></textarea>
+                    <textarea name='description' id='description' cols='30' rows='5'></textarea>
                     <span className='help-text text-caption'>메뉴 등 추가 정보를 입력해 주세요.</span>
                 </div>
 
                 <div className='button-container'>
-                    <button className='button button--primary text-caption' onClick={handleFomSubmit}>
+                    <button type='submit' className='button button--primary text-caption'>
                         추가하기
                     </button>
                 </div>

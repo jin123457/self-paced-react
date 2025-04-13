@@ -6,7 +6,7 @@ import Modal from './components/Modal/Layout/Modal';
 import AddRestaurantModal from './components/Modal/AddRestaurantModal';
 import RestaurantDetailModal from './components/Modal/RestaurantDetailModal';
 import { useEffect, useState } from 'react';
-import { FOOD_CATEGORY } from './constants';
+import { FOOD_CATEGORY, MODAL_TYPE } from './constants';
 
 function App() {
     const [restaurants, setRestaurants] = useState([]);
@@ -38,14 +38,14 @@ function App() {
     const openRestaurantDetailModal = (restaurant) => {
         setSelectedRestaurant(restaurant);
         setModalState({
-            type: 'detail',
+            type: MODAL_TYPE.DETAIL,
             isOpen: true,
         });
     };
 
     const openRestaurantAddModal = () => {
         setModalState({
-            type: 'addForm',
+            type: MODAL_TYPE.ADD,
             isOpen: true,
         });
     };
@@ -56,6 +56,12 @@ function App() {
             isOpen: false,
         });
     };
+
+    const modalComponents = {
+        [MODAL_TYPE.ADD]: <AddRestaurantModal closeRestaurantModal={closeRestaurantModal} currentRestaurants={restaurants} handleRestaurant={setRestaurants} />,
+        [MODAL_TYPE.DETAIL]: <RestaurantDetailModal closeRestaurantModal={closeRestaurantModal} selectedRestaurant={selectedRestaurant} />,
+    };
+
     return (
         <>
             <Header openRestaurantAddModal={openRestaurantAddModal} />
@@ -63,21 +69,7 @@ function App() {
                 <CategoryFilter category={category} onChangeCategory={setCategory} />
                 <RestaurantList restaurants={restaurants} openRestaurantDetailModal={openRestaurantDetailModal} />
             </main>
-            <aside>
-                {modalState.isOpen && (
-                    <Modal onChangeModal={closeRestaurantModal}>
-                        {modalState.type === 'addForm' ? (
-                            <AddRestaurantModal
-                                closeRestaurantModal={closeRestaurantModal}
-                                currentRestaurants={restaurants}
-                                handleRestaurant={setRestaurants}
-                            />
-                        ) : (
-                            <RestaurantDetailModal closeRestaurantModal={closeRestaurantModal} selectedRestaurant={selectedRestaurant} />
-                        )}
-                    </Modal>
-                )}
-            </aside>
+            <aside>{modalState.isOpen && <Modal onChangeModal={closeRestaurantModal}>{modalComponents[modalState.type]}</Modal>}</aside>
         </>
     );
 }

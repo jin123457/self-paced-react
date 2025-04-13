@@ -7,3 +7,8 @@ export const FOOD_CATEGORY = Object.freeze({
     아시안: 'asian',
     기타: 'etc',
 });
+
+export const MODAL_TYPE = Object.freeze({
+    ADD: 'addForm',
+    DETAIL: 'detail',
+});

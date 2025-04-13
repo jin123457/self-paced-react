@@ -25,13 +25,13 @@ function AddRestaurantModal({ onCloseModal, onUpdateRestaurants }) {
 
                 const response = await fetch('http://localhost:3000/restaurants');
                 const updatedRestaurants = await response.json();
-                onUpdateRestaurants(updatedRestaurants);
+                await onUpdateRestaurants(updatedRestaurants);
+                onCloseModal();
             } catch (error) {
                 console.error('레스토랑 추가 중 오류 발생:', error.message);
             }
         };
         addRestaurant();
-        onCloseModal();
     };
     return (
         <>

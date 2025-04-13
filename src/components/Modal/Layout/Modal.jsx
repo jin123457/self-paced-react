@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-function Modal({ closeRestaurantModal, children }) {
+function Modal({ onChangeModal, children }) {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                closeRestaurantModal(false);
+                onChangeModal(false);
             }
         };
 
@@ -17,7 +17,7 @@ function Modal({ closeRestaurantModal, children }) {
     return (
         <>
             <div className='modal modal--open'>
-                <div className='modal-backdrop' onClick={() => closeRestaurantModal()}></div>
+                <div className='modal-backdrop' onClick={() => onChangeModal()}></div>
                 <div className='modal-container'>{children}</div>
             </div>
         </>

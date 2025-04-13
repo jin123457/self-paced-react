@@ -1,5 +1,5 @@
-import '../css/CategoryFilter.css';
-import { FOOD_CATEGORY } from '../constants';
+import './CategoryFilter.css';
+import { FOOD_CATEGORY } from '../../constants';
 
 const categoryData = Object.keys(FOOD_CATEGORY);
 

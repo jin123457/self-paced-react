@@ -1,4 +1,4 @@
-import '../css/Modal.css';
+import './Layout/Modal.css';
 
 function RestaurantDetailModal({ closeRestaurantModal, selectedRestaurant }) {
     const { name, description } = selectedRestaurant;

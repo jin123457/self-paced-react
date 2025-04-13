@@ -1,4 +1,4 @@
-import '../css/Modal.css';
+import './Layout/Modal.css';
 import { useState } from 'react';
 
 function AddRestaurantModal({ closeRestaurantModal, handleRestaurant }) {

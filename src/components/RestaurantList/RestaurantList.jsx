@@ -1,5 +1,5 @@
-import '../css/RestaurantList.css';
-import { FOOD_CATEGORY } from '../constants.js';
+import './RestaurantList.css';
+import { FOOD_CATEGORY } from '../../constants.js';
 
 function RestaurantList({ restaurants, openRestaurantDetailModal }) {
     return (

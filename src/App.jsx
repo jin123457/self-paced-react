@@ -1,16 +1,18 @@
 import './App.css';
-import CategoryFilter from './components/CategoryFilter';
-import Header from './components/Header';
-import RestaurantList from './components/RestaurantList';
-import Modal from './components/Modal';
-import AddRestaurantModal from './components/AddRestaurantModal';
-import RestaurantDetailModal from './components/RestaurantDetailModal';
+import CategoryFilter from './components/CategoryFilter/CategoryFilter';
+import Header from './components/Header/Header';
+import RestaurantList from './components/RestaurantList/RestaurantList';
+import Modal from './components/Modal/Layout/Modal';
+import AddRestaurantModal from './components/Modal/AddRestaurantModal';
+import RestaurantDetailModal from './components/Modal/RestaurantDetailModal';
 import { useEffect, useState } from 'react';
 import { FOOD_CATEGORY } from './constants';
 
 function App() {
     const [restaurants, setRestaurants] = useState([]);
-    const [category, setCategory] = useState(Object.keys(FOOD_CATEGORY).find((key) => FOOD_CATEGORY[key] === 'ALL'));
+    const [category, setCategory] = useState(() => {
+        return Object.keys(FOOD_CATEGORY).find((key) => FOOD_CATEGORY[key] === 'ALL');
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     const [modalKind, setModalKind] = useState('');

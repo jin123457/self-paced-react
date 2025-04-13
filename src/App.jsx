@@ -20,26 +20,12 @@ function App() {
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:3000/restaurants')
-            .then((response) => response.json())
-            .then((data) => setRestaurants(data))
-            .catch((error) => {
-                console.error(error.message);
-            });
-    }, []);
-
-    useEffect(() => {
         const fetchRestaurants = async () => {
             try {
                 const response = await fetch('http://localhost:3000/restaurants');
                 const restaurantsData = await response.json();
 
-                if (category === '전체') {
-                    setRestaurants(restaurantsData);
-                    return;
-                }
-
-                const filteredRestaurants = restaurantsData.filter((restaurant) => restaurant.category === category);
+                const filteredRestaurants = category === '전체' ? restaurantsData : restaurantsData.filter((restaurant) => restaurant.category === category);
                 setRestaurants(filteredRestaurants);
             } catch (error) {
                 console.error(error.message);
